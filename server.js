@@ -26,4 +26,13 @@ io.on("connection", (socket) => {
 	})
 })
 
+if ("production") {
+    const path = require("path");
+    app.get("/", (req, res) => {
+        app.use(express.static(path.resolve(__dirname, "views", "build")));
+        res.sendFile(path.resolve(__dirname, "views", "build", "index.html"));
+    });
+}
+
+
 server.listen(5000, () => console.log("server is running on port 5000"))
