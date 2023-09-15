@@ -8,6 +8,10 @@ const io = require("socket.io")(server, {
 		methods: [ "GET", "POST" ]
 	}
 })
+
+app.get("/",(req,res)=>{
+res.json("heloooo")
+}
 console.log("object")
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id)
