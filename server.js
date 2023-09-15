@@ -4,7 +4,7 @@ const app = express()
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
 	cors: {
-		origin: "http://localhost:3000",
+		origin: "https://streaming-l3km.vercel.app",
 		methods: [ "GET", "POST" ]
 	}
 })
@@ -26,12 +26,6 @@ io.on("connection", (socket) => {
 	})
 })
 
-if ("production") {
-    const path = require("path");
-    app.get("/", (req, res) => {
-        app.use(express.static(path.resolve(__dirname, "views", "build")));
-        res.sendFile(path.resolve(__dirname, "views", "build", "index.html"));
-    });
-}
+
 
 server.listen(5000, () => console.log("server is running on port 5000"))
